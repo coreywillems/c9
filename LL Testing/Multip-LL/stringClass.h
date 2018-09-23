@@ -5,21 +5,25 @@
 
 using namespace std;
 
+class stringNode
+{
+  public:
+    string data;
+    stringNode *next;
 
-class stringNode {
-    public:
-        string data;
-        stringNode *next;
-        
-        stringNode(string d, stringNode *n = nullptr) {
-            data = d;
-            next = n;
-        }
+    stringNode(string d, stringNode *n = nullptr)
+    {
+        data = d;
+        next = n;
+    }
 };
 
-void printStringList(stringNode *x) {
-    cout << endl << "Now for the String LL: " << endl;
-    for(stringNode *temp = x; temp != nullptr; temp=temp->next) {
+void printStringList(stringNode *x)
+{
+    cout << endl
+         << "Now for the String LL: " << endl;
+    for (stringNode *temp = x; temp != nullptr; temp = temp->next)
+    {
         cout << temp->data << endl;
     }
 }
