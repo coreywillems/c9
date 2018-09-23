@@ -4,9 +4,8 @@
 #include <iostream>
 
 using namespace std;
-//from chromebook push
-int main()
-{
+
+int main() {
   // intNode for intClass
   intNode *a = new intNode(3, nullptr);
   intNode *b = new intNode(20, nullptr);
