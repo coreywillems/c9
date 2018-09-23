@@ -3,9 +3,11 @@
 #include "testClass.h"
 #include <iostream>
 
+//testing
 using namespace std;
 
-int main() {
+int main()
+{
   // intNode for intClass
   intNode *a = new intNode(3, nullptr);
   intNode *b = new intNode(20, nullptr);
