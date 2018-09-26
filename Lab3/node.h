@@ -1,7 +1,6 @@
 #ifndef NODE_H
 #define NODE_H
 #include <iostream>
-#include <printf.h>
 using namespace std;
 
 class Node {
@@ -43,26 +42,46 @@ class SLL {
                 fastPTR = fastPTR->next->next;
                 slowPTR = slowPTR->next;
             }
-            printf("middle is [%d]\n\n", slowPTR->data);
+            cout << "middle is " << slowPTR->data << endl << endl;
         }
     }
-/*     void insertToMiddle(int item) {
-        Node* nn = new Node(item, nullptr);
-        count;
-        while(nn != NULL && nn/2=0) {
-            nn = nn->next;
-        }
-    } */
 
+    // void deleteLast(Node* front) {
+    //     Node* currNode = front;
+    //     Node* nextNode = front->next;
+    //     while(nextNode != NULL) {
+    //         currNode = nextNode;
+    //         nextNode = nextNode->next;
+    //         }
+    //         delete currNode;
+    // }
+    
+    void deleteLast(Node *frontpts) {
+        if(frontpts == NULL)
+        return;
+        
+        if(frontpts->next == NULL) {
+            delete frontpts;
+            frontpts = NULL;
+            return;
+        }
+        Node* tmp = frontpts;
+        while (tmp->next && tmp->next->next != NULL) {
+            tmp = tmp->next;
+        }
+        delete tmp->next;
+        tmp->next = NULL;
+    }
+    
     void printList () {
         Node *name = front;
-        cout << endl << "Sll List" << endl;
-
         while(name != NULL) {
             cout << name->data << endl;
             name = name->next;
         }
+        cout << endl;
     }
+    
 };
 
 
@@ -72,6 +91,7 @@ void printNodeList(Node* name) {
         cout << name->data << endl;
         name = name->next;
     }
+    cout << endl;
 }
 
 #endif

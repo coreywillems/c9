@@ -40,10 +40,16 @@ int main() {
     second->insertFront(2);
     second->insertFront(23);
 
+    cout << "Node List:" << endl;
     printNodeList(lizzard);
-    first.printList();
-
     second->insertMiddle(lizzard);
+    cout << "SLL First" << endl;
+    first.printList();
+    cout << "SLL Second" << endl;
+    second->printList();
+    
+    second->deleteLast();
+    cout << "First list after last deletion" << endl;
     second->printList();
 
 
