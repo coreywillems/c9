@@ -3,95 +3,152 @@
 #include <iostream>
 using namespace std;
 
-class Node {
-    public:
-        int data;
-        Node *next;
+// class that creates nodes to be placed in SLL
+class Node
+{
+  public:
+    int data;
+    Node *next;
 
-        Node(int d = 0, Node *n = nullptr)
+    Node(int d = 0, Node *n = nullptr)
     {
         data = d;
         next = n;
     }
 };
 
-class SLL {
-    private:
-    Node* front;
-
-    public:
-    SLL() { front = nullptr; }
-
-    void insertFront(int item) {
-        Node* nn = new Node(item, nullptr);
-        if(front == NULL) {
-            front = nn;
-        }
-        else {
-            nn->next = front;
-            front = nn;
-        }
-    }
-
-    void insertMiddle(Node* front) {
-        Node* slowPTR = front;
-        Node* fastPTR = front;
-
-        if (front!=NULL) {
-            while(fastPTR != NULL && fastPTR->next != NULL) {
-                fastPTR = fastPTR->next->next;
-                slowPTR = slowPTR->next;
-            }
-            cout << "middle is " << slowPTR->data << endl << endl;
-        }
-    }
-
-    // void deleteLast(Node* front) {
-    //     Node* currNode = front;
-    //     Node* nextNode = front->next;
-    //     while(nextNode != NULL) {
-    //         currNode = nextNode;
-    //         nextNode = nextNode->next;
-    //         }
-    //         delete currNode;
-    // }
-    
-    void deleteLast(Node *frontpts) {
-        if(frontpts == NULL)
-        return;
-        
-        if(frontpts->next == NULL) {
-            delete frontpts;
-            frontpts = NULL;
-            return;
-        }
-        Node* tmp = frontpts;
-        while (tmp->next && tmp->next->next != NULL) {
-            tmp = tmp->next;
-        }
-        delete tmp->next;
-        tmp->next = NULL;
-    }
-    
-    void printList () {
-        Node *name = front;
-        while(name != NULL) {
-            cout << name->data << endl;
-            name = name->next;
-        }
-        cout << endl;
-    }
-    
-};
-
-
-void printNodeList(Node* name) {
-
-    while(name != NULL) {
+// traverses the node list and prints all out
+void printNodeList(Node *name)
+{
+    while (name != NULL)
+    {
         cout << name->data << endl;
         name = name->next;
     }
     cout << endl;
 }
+
+/* void deleteLastNodeInNodeList() {
+
+} */
+
+class SLL
+{
+  private:
+    Node *front, *last;
+
+  public:
+    SLL()
+    {
+        cout << "Contructed SLL! Howdy" << endl;
+        front = NULL;
+        last = NULL;
+    }
+    ~SLL() { cout << "Deconstructed SLL! Adios" << endl; }
+
+    // inserts into the beggining of a SLL
+    void insertFront(int item)
+    {
+        Node *tmp = new Node(item, nullptr);
+        if (front == NULL)
+        {
+            front = tmp;
+        }
+        else
+        {
+            tmp->next = front;
+            front = tmp;
+        }
+    }
+
+    // not totally working, only prints the middle
+    void insertMiddle(Node *front)
+    {
+        Node *slow = front;
+        Node *fast = front;
+
+        if (front != NULL)
+        {
+            while (fast != NULL && fast->next != NULL)
+            {
+                fast = fast->next->next;
+                slow = slow->next;
+            }
+            cout << "middle is " << slow->data << endl
+                 << endl;
+        }
+    }
+
+    // prints all nodes of a SLL
+    void printList()
+    {
+        Node *name = front;
+        while (name != NULL)
+        {
+            cout << name->data << endl;
+            name = name->next;
+        }
+        cout << endl;
+    }
+
+    // deletes the last node in a SLL
+    void deleteLast()
+    {
+        Node *current = new Node;
+        Node *previous = new Node;
+        current = front;
+        while (current->next != NULL)
+        {
+            previous = current;
+            current = current->next;
+        }
+        last = previous;
+        previous->next = NULL;
+        delete current;
+    }
+
+    //deletes the middle node from a SLL
+    void deleteMiddle()
+    {
+        Node *curr = front;
+        Node *first = front;
+        Node *prev = front;
+     
+        int count = 0;
+        int middleNode = 0;
+
+        while (curr != NULL)
+        {
+            ++count;
+            curr = curr->next;
+        }
+
+        if (count % 2 == 0)
+        {
+            middleNode = (count / 2) - 1;
+        }
+        else
+        {
+            middleNode = count / 2;
+        }
+
+        for(int i=0; i<count; i++) {
+            if(i==middleNode) {
+                prev->next = curr->next;
+                delete curr;
+                
+            }
+            else { 
+                curr = first->next;
+                first = curr;
+                prev = front->next;
+
+                }
+        }
+
+        cout << "There are " << count << " nodes in the second SLL" << endl;
+        cout << "The middle Node is " << middleNode+1 << endl;
+    }
+};
 
 #endif
