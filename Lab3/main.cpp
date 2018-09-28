@@ -62,6 +62,7 @@ int main()
     second->deleteMiddle();
     cout << endl << "Second list after middle deletion" << endl;
     second->printList();
-
+    
+    delete second;
     return 0;
 }

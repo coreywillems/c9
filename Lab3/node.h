@@ -112,7 +112,7 @@ class SLL
     {
         Node *curr = front;
         Node *first = front;
-        Node *prev = front;
+        Node *prev = NULL;
      
         int count = 0;
         int middleNode = 0;
@@ -136,13 +136,16 @@ class SLL
             if(i==middleNode) {
                 prev->next = curr->next;
                 delete curr;
+                curr = prev->next;
                 
             }
             else { 
-                curr = first->next;
-                first = curr;
-                prev = front->next;
+                
+                //curr = first->next;//first stays at first. so should be curr = curr 0=
 
+                prev = curr;
+                curr = prev->next;
+                first = curr->next;
                 }
         }
 
