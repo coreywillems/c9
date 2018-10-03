@@ -13,12 +13,12 @@ int main() {
     animals.insertFront(24);
     animals.insertFront(99);
     animals.insertFront(1);
-    animals.insertFront(2);
-    animals.insertFront(1000);
+    animals.insertFront(999);
+    //animals.insertBack(2);
 
-    
+    animals.deleteFront();
+    animals.deleteBack();
     animals.printAll();
-    
-    
+ 
     return 0;
 }
