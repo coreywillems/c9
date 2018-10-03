@@ -140,11 +140,9 @@ class SLL
                 
             }
             else { 
-                
-                //curr = first->next;//first stays at first. so should be curr = curr 0=
-
+            
                 prev = curr;
-                curr = prev->next;
+                curr = curr->next; //I'm getting a seg fault here and I don't know why
                 first = curr->next;
                 }
         }
