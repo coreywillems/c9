@@ -87,17 +87,14 @@ class SLL2
 
     void insertBack(int item)
     {
-        Node *tmp = new Node(item, NULL);
-        if (front == NULL)
-        {
+        Node *tmp = new Node(item, nullptr);
+
+        if (front == NULL) {
             front = back = tmp;
             return;
         }
-        else
-        {
-            back->next = tmp;
-            back = tmp;
-        }
+        back->next = tmp;
+        back = tmp;
     }
 
   //working
@@ -114,36 +111,36 @@ class SLL2
         delete tmp;
     }
 
+//working I think
     void deleteBack()
     {
         Node *tmp = front;
 
-        if(front == NULL) {
+        if (front == NULL) {
             return;
         }
-
-        if(front->next == NULL) {
+        if (front->next == NULL) {
             delete front;
             front = back = nullptr;
             return;
         }
-
-        while (tmp->next != NULL)
+        while (tmp->next != back)
         {
             tmp = tmp->next;
         }
-        delete back;
         back = tmp;
-        back->next = nullptr;
+        delete back;
+        back = nullptr;
     }
 
     void deleteMiddle()
     {
     }
 
+//working
     void printAll()
     {
-    while (front != NULL)
+    while (front != NULL && front->next != NULL)
     {
         cout << front->data << endl;
         front = front->next;
