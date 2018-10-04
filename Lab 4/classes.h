@@ -26,21 +26,22 @@ class SLL
         SLL() { front = NULL; }
         ~SLL() { cout << "SLL destructed" << endl; }
 
+//working
     void insertBack(int item)
     {
         Node* tmp = new Node(item, nullptr);
+        Node* last = front;
         
         if(front == NULL) {
             front = tmp;
         }
-        while (front != NULL) {
-            front->next = tmp;
-            tmp->next = nullptr;
+        else {
+            while (last->next != NULL) 
+            {
+                last = last->next;
+            }
+            last->next = tmp;
         }
-        // else {
-        //     front->next = tmp;
-        //     tmp->next = nullptr;
-        // }
         
     }
 
@@ -52,12 +53,15 @@ class SLL
     {
     }
 
+//working
     void printNodeList()
     {
-        while (front != NULL) 
+        Node* tmp = front;
+
+        while (tmp != NULL) 
         {
-            cout << front->data << endl;
-            front = front->next;
+            cout << tmp->data << endl;
+            tmp = tmp->next;
         }
         cout << endl;
     }
@@ -95,6 +99,8 @@ class SLL2
     void insertFront(int item)
     {
         Node *tmp = new Node(item, nullptr);
+        //Node* front = front;
+
         if (front == NULL)
         {
             front = tmp;
@@ -109,13 +115,17 @@ class SLL2
     void insertBack(int item)
     {
         Node *tmp = new Node(item, nullptr);
+        //Node* front = front;
+        Node* back = back;
 
-        if (front == NULL) {
+        if (front == nullptr  /* && back == nullptr */ ) {
             front = back = tmp;
             return;
         }
-        back->next = tmp;
-        back = tmp;
+        else {
+            back->next = tmp;
+            back = tmp;
+        }
     }
 
   //working
@@ -136,6 +146,7 @@ class SLL2
     void deleteBack()
     {
         Node *tmp = front;
+        //Node *tmp = new Node();
 
         if (front == NULL) {
             return;
@@ -161,11 +172,12 @@ class SLL2
 //working
     void printAll()
     {
-    while (front != NULL) //&& front->next != NULL)
-    {
-        cout << front->data << endl;
-        front = front->next;
-    }
+        Node* tmp = front;
+            while (tmp != NULL)
+            {
+                cout << tmp->data << endl;
+                tmp = tmp->next;
+            }
     }
 };
 
