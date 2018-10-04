@@ -19,14 +19,29 @@ class Node
 
 class SLL
 {
-  private:
-    Node *front;
+    private:
+        Node *front;
 
-    SLL() { front = NULL; }
-    ~SLL() { cout << "SLL destructed" << endl; }
+    public:
+        SLL() { front = NULL; }
+        ~SLL() { cout << "SLL destructed" << endl; }
 
-    void insertBack()
+    void insertBack(int item)
     {
+        Node* tmp = new Node(item, nullptr);
+        
+        if(front == NULL) {
+            front = tmp;
+        }
+        while (front != NULL) {
+            front->next = tmp;
+            tmp->next = nullptr;
+        }
+        // else {
+        //     front->next = tmp;
+        //     tmp->next = nullptr;
+        // }
+        
     }
 
     void deleteFront()
@@ -39,6 +54,12 @@ class SLL
 
     void printNodeList()
     {
+        while (front != NULL) 
+        {
+            cout << front->data << endl;
+            front = front->next;
+        }
+        cout << endl;
     }
 
     void deleteMiddle()
@@ -140,7 +161,7 @@ class SLL2
 //working
     void printAll()
     {
-    while (front != NULL && front->next != NULL)
+    while (front != NULL) //&& front->next != NULL)
     {
         cout << front->data << endl;
         front = front->next;

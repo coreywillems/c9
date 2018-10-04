@@ -8,18 +8,26 @@ int main() {
     Node* c = new Node(6);
     Node* d = new Node(7);
     
-    SLL2 animals;
-    animals.insertFront(22);
-    animals.insertFront(24);
-    animals.insertFront(99);
-    //animals.insertFront(1);
-    //animals.insertFront(999);
-    animals.insertBack(23);
+    SLL animals;
+    animals.insertBack(1);
+    animals.insertBack(2);
+    animals.insertBack(3);
+    
+    animals.printNodeList();
 
-    //animals.deleteFront();
+    
+    SLL2 animals2;
+    animals2.insertFront(22);
+    animals2.insertFront(24);
+    animals2.insertFront(99);
+    animals2.insertFront(33);
+    animals2.insertFront(999);
+    //animals2.insertBack(23);
 
-    //animals.deleteBack();
-    animals.printAll();
+    //animals2.deleteFront();
+
+    //animals2.deleteBack();
+    animals2.printAll();
  
     return 0;
 }
