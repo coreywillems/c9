@@ -33,7 +33,7 @@ class SLL
         Node* last = front;
         
         if(front == NULL) {
-            front = tmp;
+            front = back = 7tmp;
         }
         else {
             while (last->next != NULL) 
