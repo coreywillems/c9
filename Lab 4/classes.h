@@ -3,182 +3,260 @@
 #include <iostream>
 using namespace std;
 
-class Node
-{
-  public:
-    int data;
-    Node *next;
+class Node {
+public:
+  int data;
+  Node *next;
 
-    Node(int d = 0, Node *n = nullptr)
-    {
-        data = d;
-        next = n;
-    }
-    //   ~Node() { cout << "Node destructed" << endl; }
+  Node(int d = 0, Node *n = nullptr) {
+    data = d;
+    next = n;
+  }
+  //   ~Node() { cout << "Node destructed" << endl; }
 };
 
-class SLL
-{
-    private:
-        Node *front;
+class SLL {
+private:
+  Node *front;
 
-    public:
-        SLL() { front = NULL; }
-        ~SLL() { cout << "SLL destructed" << endl; }
+public:
+  SLL() { front = NULL; }
+  ~SLL() { cout << "SLL destructed" << endl; }
 
-//working
-    void insertBack(int item)
-    {
-        Node* tmp = new Node(item, nullptr);
-        Node* last = front;
-        
-        if(front == NULL) {
-            front = back = 7tmp;
+  // working
+  void insertBack(int item) {
+    Node *nn = new Node(item, nullptr);
+    Node *tmp = front;
+
+    if (front == NULL) {
+      front = nn;
+    } else {
+      while (tmp->next != NULL) {
+        tmp = tmp->next;
+      }
+      tmp->next = nn;
+    }
+  }
+
+  // working
+  void deleteFront() {
+    Node *tmp = front;
+
+    if (front == NULL) {
+      return;
+    }
+    if (tmp->next == NULL) {
+      delete tmp;
+      tmp = NULL;
+      return;
+    }
+    front = front->next;
+    delete tmp;
+    tmp = NULL;
+  }
+
+  // working
+  void deleteBack() {
+    Node *tmp = front;
+    Node *curr = front;
+
+    if (front == NULL) {
+      return;
+    }
+    if (tmp->next == NULL) {
+      delete tmp;
+      tmp = NULL;
+      return;
+    }
+    while (tmp->next->next != NULL) {
+      tmp = tmp->next;
+    }
+    delete tmp->next;
+    tmp->next = NULL;
+  }
+
+  // working
+  void printNodeList() {
+    if (front == NULL) {
+      cout << "There Are NO Nodes!" << endl << endl;
+      return;
+    }
+    while (front != NULL) {
+      cout << front->data << endl;
+      front = front->next;
+    }
+    cout << endl;
+  }
+
+  // working
+  void deleteMiddle() {
+    Node *fptr = front;
+    Node *sptr = front;
+    Node *prev = front;
+
+    if (front == NULL) {
+      return;
+    }
+    if (front->next == NULL) {
+      delete front;
+      return;
+    }
+    while (fptr->next != NULL) {
+      fptr = fptr->next;
+      prev = sptr;
+      sptr = sptr->next;
+      if (fptr->next != NULL) {
+        fptr = fptr->next;
+      }
+    }
+    prev->next = sptr->next;
+    delete sptr;
+    sptr = NULL;
+  }
+
+  // working
+  void insertMiddle(int data) {
+    Node *fptr = front;
+    Node *sptr = front;
+    Node *prev = front;
+    Node *nn = new Node(data, nullptr);
+
+    if (front == NULL) {
+      front = nn;
+      nn->next = NULL;
+      return;
+    } else {
+      while (fptr->next != NULL) {
+        fptr = fptr->next;
+        prev = sptr;
+        sptr = sptr->next;
+        if (fptr->next != NULL) {
+          fptr = fptr->next;
         }
-        else {
-            while (last->next != NULL) 
-            {
-                last = last->next;
-            }
-            last->next = tmp;
-        }
-        
+      }
+      prev->next = nn;
+      nn->next = sptr;
     }
+  }
 
-    void deleteFront()
-    {
+  void printMinValueNode() {
+    Node *tmp = front;
+    Node *fptr = front;
+    Node *sptr = front;
+
+    if (front == NULL) {
+      cout << "No Min Value" << endl;
+      return;
+    } else {
+      while (fptr->data > sptr->data && fptr->next != NULL) {
+      }
     }
+  }
 
-    void deleteBack()
-    {
+  // working
+  void deleteAllNodes() {
+    Node *tmp = front;
+    cout << "Deleted All." << endl;
+
+    if (front == NULL) {
+      return;
     }
-
-//working
-    void printNodeList()
-    {
-        Node* tmp = front;
-
-        while (tmp != NULL) 
-        {
-            cout << tmp->data << endl;
-            tmp = tmp->next;
-        }
-        cout << endl;
+    while (front != NULL) {
+      front = front->next;
+      delete tmp;
+      tmp = front;
     }
-
-    void deleteMiddle()
-    {
-    }
-
-    void insertMiddle()
-    {
-    }
-
-    void printMinValueNode()
-    {
-    }
-
-    void deleteAllNodes()
-    {
-    }
+  }
 };
 
-class SLL2
-{
-  private:
-    Node *front, *back;
+class SLL2 {
+private:
+  Node *front, *back;
 
-  public:
-    SLL2()
-    {
-        front = NULL;
-        back = NULL;
+public:
+  SLL2() {
+    front = NULL;
+    back = NULL;
+  }
+  ~SLL2() { cout << "SLL2 destructed" << endl; }
+
+  void insertFront(int item) {
+    Node *nn = new Node(item, nullptr);
+
+    if (front == NULL) {
+      front = back = nn;
+      return;
+    } else {
+      nn->next = front;
+      front = nn;
     }
-    ~SLL2() { cout << "SLL2 destructed" << endl; }
+  }
 
-    void insertFront(int item)
-    {
-        Node *tmp = new Node(item, nullptr);
-        //Node* front = front;
+  void insertBack(int item) {
+    Node *nn = new Node(item, nullptr);
+    Node *tmp = front;
 
-        if (front == NULL)
-        {
-            front = tmp;
-        }
-        else
-        {
-            tmp->next = front;
-            front = tmp;
-        }
+    if (front == NULL) {
+      front = back = nn;
+      return;
+    } else {
+      while (tmp->next != NULL) {
+        tmp = tmp->next;
+      }
+      tmp->next = nn;
+      back = nn;
     }
+  }
 
-    void insertBack(int item)
-    {
-        Node *tmp = new Node(item, nullptr);
-        //Node* front = front;
-        Node* back = back;
+  // working
+  void deleteFront() {
+    Node *tmp = front;
 
-        if (front == nullptr  /* && back == nullptr */ ) {
-            front = back = tmp;
-            return;
-        }
-        else {
-            back->next = tmp;
-            back = tmp;
-        }
+    if (front == NULL) {
+      return;
+    } else {
+      front = front->next;
+      delete tmp;
+      tmp = NULL;
     }
+  }
 
-  //working
-    void deleteFront()
-    {
-        Node *tmp = new Node();
+  // working
+  void deleteBack() {
+    Node *tmp = front;
 
-        if (front == NULL)
-        {
-            return;
-        }
-        tmp = front;
-        front = front->next;
-        delete tmp;
+    if (front == NULL) {
+      return;
     }
-
-//working I think
-    void deleteBack()
-    {
-        Node *tmp = front;
-        //Node *tmp = new Node();
-
-        if (front == NULL) {
-            return;
-        }
-        if (front->next == NULL) {
-            delete front;
-            front = back = nullptr;
-            return;
-        }
-        while (tmp->next != back)
-        {
-            tmp = tmp->next;
-        }
-        back = tmp;
-        delete back;
-        back = nullptr;
+    if (front->next == NULL) {
+      delete tmp;
+      tmp = NULL;
+      return;
+    } else {
+      while (tmp->next->next != NULL) {
+        tmp = tmp->next;
+      }
+      delete tmp->next;
+      back = tmp;
+      back->next = NULL;
     }
+  }
 
-    void deleteMiddle()
-    {
+  void deleteMiddle() {
+
+  }
+
+  // working
+  void printAll() {
+    if (front == NULL) {
+      return;
     }
 
-//working
-    void printAll()
-    {
-        Node* tmp = front;
-            while (tmp != NULL)
-            {
-                cout << tmp->data << endl;
-                tmp = tmp->next;
-            }
+    while (front != NULL) {
+      cout << front->data << endl;
+      front = front->next;
     }
+  }
 };
 
 #endif
