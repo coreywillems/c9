@@ -1,0 +1,47 @@
+#include <iostream>
+#include<stack>
+#include<string>
+#include<ctype.h>
+using namespace std;
+
+int eval(string exp) {
+    stack <char> ops;
+    stack <int> vals;
+    
+    for (int i=0; i < exp.size(); i++) {
+        if (exp[i] == '(')
+            continue;
+        
+        else if ((exp[i] == '+') || (exp[i] == '-') 
+                || (exp[i] == '*') || (exp[i] == '/')) {
+            ops.push(exp[i]);
+        }
+        else if (isdigit(exp[i])) {
+            vals.push(exp[i] - '0');
+        }
+        else if (exp[i] == ')') {
+            int rop = vals.top();
+            vals.pop();
+            int lop = vals.top();
+            vals.pop();
+            char op = ops.top();
+            ops.pop();
+            
+            if (op == '+')
+                vals.push(lop + rop);
+            else if ( op == '-' ) 
+                vals.push(lop - rop);
+            else if (op == '*')
+                vals.push(lop * rop);
+            else if (op == '/')
+                vals.push(lop / rop);
+        }
+    }
+    return vals.top();
+}
+
+int main() {
+    string exp = "((1+2+(3+2)*(2+2))/2)";
+    cout << eval(exp) << endl;
+    return 0;
+}
