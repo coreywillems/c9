@@ -1,0 +1,50 @@
+#include <iostream>
+#include <stack>
+#include <string>
+using namespace std;
+
+int
+output (string exp)
+{
+  stack <char> op;
+  string s = "";
+  
+  for (int i = 0; i < exp.size (); i++)
+    {
+        if (isalpha (exp[i]))
+	    {
+	        s = exp[i];
+	        cout << s;
+	        continue;
+	    }
+	    
+        else if ( !isalpha(exp[i])) {
+            if(op.empty()) {
+                op.push(exp[i]);
+            }
+            else if(exp[i] == '-' || exp[i] == '+') {
+                while (op.top() == '-' || op.top() == '+') {
+                    op.pop();
+                }
+                op.push(exp[i]);
+            }
+            else if(exp[i] == '*' || exp[i] == '/') {
+                while (op.top() == '*' || op.top() == '/') {
+                    op.pop();
+                }
+                op.push(exp[i]);
+            }
+            
+            
+        }
+    }
+}
+
+int
+main ()
+{
+    string exp = "a+b*c";
+    
+    cout << output(exp) << endl;
+    return 0;
+}
